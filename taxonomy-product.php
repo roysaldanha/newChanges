@@ -11,10 +11,30 @@ $new_cats =  array();
 foreach ($product_cats as $k => $product_cat) {
     $new_cats[] = $product_cat->slug;
 }  
- 
-print_r($new_cats);
 
-echo end($new_cats);exit;
+$WOOF->tests =array();
+
+foreach ($terms as $k => $term) {
+    foreach ($term['childs'] as  $child) { 
+        $WOOF->tests[]= $child['slug'];
+        if(count($child['childs'])>0 && isset($child['childs'])) {
+            $WOOF->getChildsRec($child);
+        }
+    }
+}
+
+$sorted_terms = array();
+
+foreach ($WOOF->tests as $k => $my_term) {
+    if(in_array($my_term, $new_cats)) {
+        $sorted_terms[] = $my_term;
+    }
+}
+
+
+print_r($sorted_terms);
+echo end($sorted_terms);exit;
+
 $shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) ); 
 
 if (!empty($terms) AND is_array($terms)){  ?>
