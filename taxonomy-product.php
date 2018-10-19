@@ -12,6 +12,9 @@ foreach ($product_cats as $k => $product_cat) {
     $new_cats[] = $product_cat->slug;
 }  
  
+print_r($new_cats);
+
+echo end($new_cats);exit;
 $shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) ); 
 
 if (!empty($terms) AND is_array($terms)){  ?>
