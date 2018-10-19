@@ -24,7 +24,7 @@ if (!empty($terms) AND is_array($terms)){  ?>
                     <?php } ?>
                 <a href="<?php echo $shop_page_url; ?>?swoof=1&product_cat=<?php echo $term['slug']; ?>"><?php echo $term['name']; ?></a>
                 <?php if (!empty($term['childs'])) {
-                        $WOOF->woof_draw_checkbox_taxonomy_product($taxonomy_info, $new_cats[0], $term['term_id'], $term['childs'], $show_count, $show_count_dynamic, $hide_dynamic_empty_pos, 'YES','Y');
+                        $WOOF->woof_draw_checkbox_taxonomy_product($taxonomy_info, end($new_cats), $term['term_id'], $term['childs'], $show_count, $show_count_dynamic, $hide_dynamic_empty_pos, 'YES','Y');
                 } 
               
         } ?>
