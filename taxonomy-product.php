@@ -31,10 +31,6 @@ foreach ($WOOF->tests as $k => $my_term) {
     }
 }
 
-
-print_r($sorted_terms);
-echo end($sorted_terms);exit;
-
 $shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) ); 
 
 if (!empty($terms) AND is_array($terms)){  ?>
@@ -47,7 +43,7 @@ if (!empty($terms) AND is_array($terms)){  ?>
                     <?php } ?>
                 <a href="<?php echo $shop_page_url; ?>?swoof=1&product_cat=<?php echo $term['slug']; ?>"><?php echo $term['name']; ?></a>
                 <?php if (!empty($term['childs'])) {
-                        $WOOF->woof_draw_checkbox_taxonomy_product($taxonomy_info, end($new_cats), $term['term_id'], $term['childs'], $show_count, $show_count_dynamic, $hide_dynamic_empty_pos, 'YES','Y');
+                        $WOOF->woof_draw_checkbox_taxonomy_product($taxonomy_info, end($sorted_terms), $term['term_id'], $term['childs'], $show_count, $show_count_dynamic, $hide_dynamic_empty_pos, 'YES','Y');
                 } 
               
         } ?>
