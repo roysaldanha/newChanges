@@ -1430,11 +1430,6 @@ function woof_supports_html5_storage() {
 
 $(document).ready(function(){
 
-if(shownLis != 'undefined') {
-	for (var i = 0, n = shownLis.length; i < n; i++) {
-	    }
-
-
 	if($("#boomBoom").length)
 	{
 	   
