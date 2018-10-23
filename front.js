@@ -1458,5 +1458,4 @@ $(document).ready(function(){
 
 
 	})
-}
 });
