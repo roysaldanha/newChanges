@@ -33,6 +33,10 @@ $shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) );
 
 
 foreach ($sorted_terms as $key => $category) {
+
+	if($key != 0 ) {
+		echo " / ";
+	}
 	
 	echo '<a href="'.$shop_page_url.'?swoof=1&product_cat='.$category['slug'].'">'.$category['name'].' </a>';
 }
