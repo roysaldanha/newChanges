@@ -1,0 +1,74 @@
+<?php if (!defined('ABSPATH')) die('No direct access allowed'); ?>
+<div class="woof_productds_top_panel"><?php 
+$categories_list = array();
+
+		$prod_cat_args = array(
+			'taxonomy'     => 'product_cat', //woocommerce
+            'orderby'      => 'name',
+            'empty'        => 0,
+            'slug' => $_REQUEST['product_cat']
+        );
+
+        $terms = get_categories( $prod_cat_args );
+
+
+
+$MakeCats = new MakeCats();
+
+
+
+$MakeCats->tests[0]['name'] = $terms[0]->name;
+$MakeCats->tests[0]['slug'] = $terms[0]->slug;
+$MakeCats->tests[0]['term_id'] = $terms[0]->term_id;
+
+
+if($terms[0]->parent != 0) {
+	$MakeCats->getTermDetails($terms[0]->parent);
+
+}
+
+$sorted_terms = array_reverse($MakeCats->tests);
+$shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) ); 
+
+
+
+foreach ($sorted_terms as $key => $category) {
+	
+	echo '<a href="'.$shop_page_url.'?swoof=1&product_cat='.$category['slug'].'">'.$category['name'].' </a>';
+}
+
+
+
+
+
+class MakeCats {
+	public $tests = array();
+
+	function getTermDetails($id) {
+
+
+
+		$term = get_term_by( 'id', $id, 'product_cat' );
+
+
+		$test_array = array('name' => $term->name, 'slug' => $term->slug, 'term_id' => $term->term_id);
+
+		$this->tests[] = $test_array;
+
+
+
+
+		if($term->parent != 0) {
+			$this->getTermDetails($term->parent);
+
+		}
+
+		return $cat_array;
+	}
+
+
+
+
+}
+
+?></div>
